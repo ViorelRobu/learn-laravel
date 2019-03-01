@@ -11,24 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@home');
 
-Route::get('/test', function () {
-    $tasks = [
-        'Wake up at 5:30',
-        'Go to work',
-        'Have lunch'
-    ];
+Route::get('/test', 'PagesController@test');
 
-    return view('test', compact("tasks"));
-});
+Route::get('/about', 'PagesController@about');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/contact', 'PagesController@contact');
