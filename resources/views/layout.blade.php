@@ -90,6 +90,8 @@
                 <a href="/">Home</a>
                 <a href="/about">About</a>
                 <a href="/contact">Contact</a>
+                <a href="/projects">Projects</a>
+                <a href="/projects/create">New Project</a>
                 <a href="/test">Test</a>
             </div>
             @yield('page_content')
