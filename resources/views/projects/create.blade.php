@@ -13,14 +13,23 @@
 <form action="/projects" method="post">
     {{ csrf_field() }}
     <div>
-        <input type="text" name="title" id="" placeholder="Project title">
+        <input type="text" name="title" id="" placeholder="Project title" value="{{ old('title') }}">
     </div>
     <div>
-        <textarea name="description" id="" cols="30" rows="10" placeholder="Project description"></textarea>
+        <textarea name="description" id="" cols="30" rows="10" placeholder="Project description">{{ old('description') }}</textarea>
     </div>
     <div>
         <button type="submit">Create Project</button>
     </div>
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 </form>
 

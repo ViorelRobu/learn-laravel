@@ -14,10 +14,10 @@
     {{ csrf_field() }}
     {{ method_field('PATCH') }}
     <div>
-        <input type="text" name="title" id="" placeholder="Project title" value="{{ $project->title }}">
+        <input type="text" name="title" id="" placeholder="Project title" value="{{ $project->title }}" required>
     </div>
     <div>
-        <textarea name="description" id="" cols="30" rows="10" placeholder="Project description">{{ $project->description }}</textarea>
+        <textarea name="description" id="" cols="30" rows="10" placeholder="Project description" required>{{ $project->description }}</textarea>
     </div>
     <div>
         <button type="submit">Update Project</button>
