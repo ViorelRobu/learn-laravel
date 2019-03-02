@@ -8,6 +8,6 @@ class Task extends Model
 {
     public function project()
     {
-        return $this->belongsTo(Task::class);
+        return $this->belongsTo(Project::class);
     }
 }
