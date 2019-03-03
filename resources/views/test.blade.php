@@ -3,8 +3,8 @@
 @section('title', 'Testing, Testing, 1, 2, 3')
 
 @section('content')
-<div class="title m-b-md">
-    Testing page
+<div class="col-lg-12 text-center">
+    <h1>Testing page</h1>
 </div>
 @endsection 
 

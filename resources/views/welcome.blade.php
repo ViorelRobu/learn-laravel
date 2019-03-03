@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<div class="title m-b-md">
-    My First Web Site
+<div class="col-lg-12 text-center">
+    <h1>My First Web Site</h1>
 </div>
 @endsection 

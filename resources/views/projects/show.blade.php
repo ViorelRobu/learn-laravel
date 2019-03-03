@@ -1,11 +1,12 @@
 @extends('layout')
 
-@section('title', "Edit Project")
+@section('title', 'Edit project')
+
 
 @section('content')
 
-    <div class="title m-b-md">
-        {{ $project->title }}
+    <div class="col-lg-12 text-center">
+        <h1>{{ $project->title }}</h1>
     </div>
 
 @endsection
@@ -32,7 +33,7 @@
         </div>
     @endif
     <hr>
-    <a href="/projects/{{ $project->id }}/edit">
+    <a class="btn btn-primary" href="/projects/{{ $project->id }}/edit">
         Edit
     </a>
 

@@ -3,8 +3,8 @@
 @section('title', "Edit Project")
 
 @section('content')
-<div class="title m-b-md">
-    Edit a Project
+<div class="col-lg-12 text-center">
+    <h1>Edit Project</h1>
 </div>
 @endsection
 
@@ -13,23 +13,22 @@
 <form action="/projects/{{ $project->id }}" method="post">
     {{ csrf_field() }}
     {{ method_field('PATCH') }}
-    <div>
-        <input type="text" name="title" id="" placeholder="Project title" value="{{ $project->title }}" required>
+    <div class="form-group">
+        <label for="title">Project title</label>
+        <input type="text" class="form-control" name="title" id="title" aria-describedby="projectTitle" placeholder="Project title" value="{{ $project->title }}" required>
     </div>
-    <div>
-        <textarea name="description" id="" cols="30" rows="10" placeholder="Project description" required>{{ $project->description }}</textarea>
+    <div class="form-group">
+        <label for="description">Project description</label>
+        <textarea class="form-control" name="description" id="description" placeholder="Project description" required>{{ $project->description }}</textarea>
     </div>
-    <div>
-        <button type="submit">Update Project</button>
-    </div>
-
+    <button type="submit" class="btn btn-primary">Update project</button>
 </form>
-
+<br>
 <form action="/projects/{{ $project->id }}" method="post">
-    @method('DELETE');
+    @method('DELETE')
     @csrf
     <div>
-        <button type="submit">Delete Project</button>
+        <button class="btn btn-danger" type="submit">Delete Project</button>
     </div>
 
 </form>

@@ -3,8 +3,8 @@
 @section('title', 'About Us')
 
 @section('content')
-<div class="title m-b-md">
-    About Us
+<div class="col-lg-12 text-center">
+    <h1>About Us</h1>
 </div>
 @endsection
 

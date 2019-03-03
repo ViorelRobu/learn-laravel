@@ -3,8 +3,8 @@
 @section('title', 'Createa New Project')
 
 @section('content')
-<div class="title m-b-md">
-    Create New Project
+<div class="col-lg-12 text-center">
+    <h1>Create New Project</h1>
 </div>
 @endsection
 
@@ -12,25 +12,24 @@
 
 <form action="/projects" method="post">
     {{ csrf_field() }}
-    <div>
-        <input type="text" name="title" id="" placeholder="Project title" value="{{ old('title') }}">
+    <div class="form-group">
+        <label for="title">Project title</label>
+        <input type="text" class="form-control {{ $errors->any() ? 'is-invalid' : '' }}" name="title" id="title" aria-describedby="projectTitle" placeholder="Project title" value="{{ old('title') }}" required>
     </div>
-    <div>
-        <textarea name="description" id="" cols="30" rows="10" placeholder="Project description">{{ old('description') }}</textarea>
+    <div class="form-group">
+        <label for="description">Project description</label>
+        <textarea class="form-control {{ $errors->any() ? 'is-invalid' : '' }}" name="description" id="description" placeholder="Project description" required>{{ old('description') }}</textarea>
     </div>
-    <div>
-        <button type="submit">Create Project</button>
-    </div>
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
+    <button type="submit" class="btn btn-primary">Create Project</button>
 </form>
+@if ($errors->any())
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 @endsection 

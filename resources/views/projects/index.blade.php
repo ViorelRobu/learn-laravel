@@ -3,22 +3,17 @@
 @section('title', 'Projects')
 
 @section('content')
-<div class="title m-b-md">
-    Project
+<div class="col-md-12 text-center">
+    <h1>All Projects</h1>
 </div>
 @endsection
 
 @section('page_content')
-    <ul>
         @foreach ($projects as $project)
-            <li>
+            <div>
                 <a href="/projects/{{ $project->id }}">
                     {{ $project->title }}
                 </a>
-                <hr>
-                {{ $project->description }}
-            </li>
-            <br>
+            </div>
         @endforeach
-    </ul>
 @endsection 
