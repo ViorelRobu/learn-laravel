@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gazdă: 127.0.0.1
--- Timp de generare: mart. 02, 2019 la 03:27 PM
+-- Timp de generare: mart. 03, 2019 la 03:58 PM
 -- Versiune server: 10.1.37-MariaDB
 -- Versiune PHP: 7.3.0
 
@@ -41,7 +41,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_03_01_143651_create_projects_table', 2);
+(3, '2019_03_01_143651_create_projects_table', 2),
+(4, '2019_03_02_202446_create_tasks_table', 3);
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,30 @@ INSERT INTO `projects` (`id`, `title`, `description`, `created_at`, `updated_at`
 (5, 'EDIT Dummy title', 'EDIT\r\nReally don\'t know what to say here', '2019-03-02 10:28:45', '2019-03-02 12:22:39'),
 (6, 'Testing the new refactoring', 'Here I test the new refactoring of the create method', '2019-03-02 12:10:47', '2019-03-02 12:10:47'),
 (7, 'Interesting things about malicious users', 'I learned new stuff today', '2019-03-02 12:19:37', '2019-03-02 12:19:37'),
-(8, 'Testing malicious input protection', 'Let\'s see if this thing is working as it should be. If not we\'ll know.', '2019-03-02 12:21:03', '2019-03-02 12:21:03');
+(8, 'Testing malicious input protection', 'Let\'s see if this thing is working as it should be. If not we\'ll know.', '2019-03-02 12:21:03', '2019-03-02 12:21:03'),
+(10, 'Testing the new visuals', 'This is some random description that I came up with', '2019-03-03 12:56:14', '2019-03-03 12:56:14');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `tasks`
+--
+
+CREATE TABLE `tasks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `project_id` int(10) UNSIGNED NOT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `completed` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Eliminarea datelor din tabel `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `project_id`, `description`, `completed`, `created_at`, `updated_at`) VALUES
+(1, 3, 'Testing the tasks associated with the project', 1, '2019-03-01 22:00:00', '2019-03-03 03:43:37');
 
 -- --------------------------------------------------------
 
@@ -120,6 +144,12 @@ ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexuri pentru tabele `tasks`
+--
+ALTER TABLE `tasks`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexuri pentru tabele `users`
 --
 ALTER TABLE `users`
@@ -134,13 +164,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pentru tabele `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pentru tabele `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT pentru tabele `tasks`
+--
+ALTER TABLE `tasks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pentru tabele `users`
