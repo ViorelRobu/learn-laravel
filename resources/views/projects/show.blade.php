@@ -20,7 +20,14 @@
         <hr>
         <div>
             @foreach ($project->tasks as $task)
-                <li>{{ $task->description }}</li>
+                <div>
+                    <form action="/tasks/{{ $task->id }}" method="post">
+                        @method('PATCH')
+                        @csrf
+                        <input type="checkbox" name="completed" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                        {{ $task->description }}
+                    </form>
+                </div>
             @endforeach
         </div>
     @endif
