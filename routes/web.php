@@ -1,5 +1,11 @@
 <?php
 
+use Illuminate\Filesystem\Filesystem;
+use App\Services\Twitter;
+use App\Repositories\UserRepository;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +31,12 @@
 */
 
 // home page route
-Route::get('/', 'PagesController@home');
+// Route::get('/', 'PagesController@home');
+
+Route::get('/', function ( Twitter $twitter) {
+    dd($twitter);
+    return view('welcome');
+});
 // Test page route
 Route::get('/test', 'PagesController@test');
 // About route
