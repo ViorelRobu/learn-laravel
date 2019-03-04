@@ -19,7 +19,7 @@
     </div>
     <div class="form-group">
         <label for="description">Project description</label>
-        <textarea class="form-control" name="description" id="description" placeholder="Project description" required>{{ $project->description }}</textarea>
+        <textarea class="form-control" name="description" id="description" placeholder="Project description" rows="15" required>{{ $project->description }}</textarea>
     </div>
     <button type="submit" class="btn btn-primary">Update project</button>
 </form>
