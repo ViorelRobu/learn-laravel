@@ -12,39 +12,29 @@
 */
 
 /*
-    naming convention in Laravel
-    quick note: when needed generate resourcefull controller with php artisan make:controller TestsController -r
-    
-    GET /projects (index)
-    GET /projects/create (create)
-    POST /projects (store)
-    GET /projects/1 (show)
-    GET /projects/1/edit (edit)
-    PATCH /projects/1 (update)
-    DELETE /projects/1 (destroy)
+|    naming convention in Laravel
+|    quick note: when needed generate resourcefull controller with php artisan make:controller TestsController -r
+|    
+|    GET /projects (index)
+|    GET /projects/create (create)
+|    POST /projects (store)
+|    GET /projects/1 (show)
+|    GET /projects/1/edit (edit)
+|    PATCH /projects/1 (update)
+|    DELETE /projects/1 (destroy)
 */
 
+// home page route
 Route::get('/', 'PagesController@home');
-
+// Test page route
 Route::get('/test', 'PagesController@test');
-
+// About route
 Route::get('/about', 'PagesController@about');
-
+// Contact route(s)
 Route::get('/contact', 'PagesController@contact');
-
+// Projects routes
 Route::resource('projects', 'ProjectsController');
-
+// Tasks routes
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
-
 Route::post('/completed-tasks/{task}', 'CompletedTasksController@store');
 Route::delete('/completed-tasks/{task}', 'CompletedTasksController@destroy');
-
-
-
-// Route::get('/projects', 'ProjectsController@index');
-// Route::get('/projects/create', 'ProjectsController@create');
-// Route::post('/projects', 'ProjectsController@store');
-// Route::get('/projects/{project}', 'ProjectsController@show');
-// Route::get('/projects/{project}/edit', 'ProjectsController@edit');
-// Route::patch('/projects/{project}', 'ProjectsController@update');
-// Route::delete('/projects/{project}', 'ProjectsController@destroy');
