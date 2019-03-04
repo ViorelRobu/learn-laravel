@@ -22,8 +22,12 @@
         <div>
             @foreach ($project->tasks as $task)
                 <div>
-                    <form class="{{ $task->completed ? 'is-active' : '' }}" action="/tasks/{{ $task->id }}" method="post">
-                        @method('PATCH')
+                    <form class="{{ $task->completed ? 'is-active' : '' }}" action="/completed-tasks/{{ $task->id }}" method="post">
+
+                        @if ($task->completed)
+                            @method('DELETE')
+                        @endif
+
                         @csrf
                         <input type="checkbox" name="completed" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
                         {{ $task->description }}
@@ -39,11 +43,13 @@
 
     {{-- add a new task --}}
     <hr>
-    <form action="/projects/{{ $project->id }}/tasks" method="post">
-    {{ csrf_field() }}
-    <div class="form-group">
-        <label for="description">New Task</label>
-        <input type="text" class="form-control" name="description" id="description" aria-describedby="taskDescription" placeholder="Task description" required>
+    <div class="panel panel-default">
+        <form action="/projects/{{ $project->id }}/tasks" method="post">
+        {{ csrf_field() }}
+        <div class="form-group">
+            <label for="description">New Task</label>
+            <input type="text" class="form-control" name="description" id="description" aria-describedby="taskDescription" placeholder="Task description" required>
+    </div>
     </div>
     <button type="submit" class="btn btn-primary">Add Task</button>
 </form>
