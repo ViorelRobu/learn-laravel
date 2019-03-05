@@ -31,14 +31,14 @@ use App\Repositories\UserRepository;
 */
 
 // home page route
-// Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home');
 
-Route::get('/', function ( Twitter $twitter) {
-    dd($twitter);
-    return view('welcome');
-});
+// Route::get('/', function ( Twitter $twitter) {
+//     dd($twitter);
+//     return view('welcome');
+// });
 // Test page route
-Route::get('/test', 'PagesController@test');
+Route::get('/test', 'PagesController@test')->middleware('guest');
 // About route
 Route::get('/about', 'PagesController@about');
 // Contact route(s)
@@ -49,3 +49,7 @@ Route::resource('projects', 'ProjectsController');
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 Route::post('/completed-tasks/{task}', 'CompletedTasksController@store');
 Route::delete('/completed-tasks/{task}', 'CompletedTasksController@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
