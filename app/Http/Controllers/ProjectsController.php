@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
-use App\Mail\ProjectCreated;
+use App\Events\ProjectCreated;
 
 class ProjectsController extends Controller
 {
@@ -20,27 +20,20 @@ class ProjectsController extends Controller
         // auth()->user(); // returns a User object
         // auth()->check(); // returns a boolean
         // auth()->guest(); // helper function
-        $projects = Project::where('owner_id', auth()->id())->get();
+        $projects = auth()->user()->project;
 
         return view('projects.index', compact("projects"));
     }
 
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => ['required', 'min:3'],
-            'description' => 'required',
-        ]);
+        $attributes =$this->validateProject();
 
         $attributes['owner_id'] = auth()->id();
 
         $project = Project::create($attributes);
-    
-        $project->save();
 
-        \Mail::to('viorel.robu@schweighofer.ro')->send(
-            new ProjectCreated($project)
-        );
+        event(new ProjectCreated($project));
 
         return redirect('/projects');
     }
@@ -62,7 +55,9 @@ class ProjectsController extends Controller
 
     public function update(Project $project)
     {
-        $project->update(request(['title', 'description']));
+        $attributes = $this->validateProject();
+
+        $project->update($attributes);
         
         $project->save();
 
@@ -83,5 +78,13 @@ class ProjectsController extends Controller
         $project->delete();
 
         return redirect('/projects');
+    }
+
+    protected function validateProject()
+    {
+        return request()->validate([
+            'title' => ['required', 'min:3'],
+            'description' => 'required',
+        ]);
     }
 }

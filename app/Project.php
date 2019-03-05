@@ -2,7 +2,10 @@
 
 namespace App;
 
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
+use App\Events\ProjectCreated as AppProjectCreated;
 
 class Project extends Model
 {
@@ -15,6 +18,15 @@ class Project extends Model
     protected $fillable = [ 
         'owner_id', 'title', 'description'
     ];
+
+    protected $dispatchesEvent = [
+        'created' => AppProjectCreated::class
+    ];
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function tasks()
     {

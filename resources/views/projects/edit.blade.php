@@ -24,6 +24,7 @@
     <button type="submit" class="btn btn-primary">Update project</button>
 </form>
 <br>
+@include('errors')
 <form action="/projects/{{ $project->id }}" method="post">
     @method('DELETE')
     @csrf
