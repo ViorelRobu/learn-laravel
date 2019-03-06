@@ -33,6 +33,8 @@ class ProjectsController extends Controller
 
         $project = Project::create($attributes);
 
+        session()->flash('message', 'Your project has been created');
+
         return redirect('/projects');
     }
 

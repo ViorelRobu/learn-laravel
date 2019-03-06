@@ -8,6 +8,8 @@ class PagesController extends Controller
 {
     public function home()
     {
+        // session(['user' => auth()->user()]);
+        // return session('user');
         return view('welcome');
     }
 
